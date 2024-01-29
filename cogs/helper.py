@@ -9,13 +9,18 @@ class Helper(commands.Cog):
 
 
     @commands.Cog.listener()
-    async def on_message(self, message):
+    async def on_message(self, message):    
         if message.author == self.client.user:
             return
         
-        if "raven" in message.content:
-            await message.channel.send("r-r-raven? I heard shes a cutie pie uwu")
+        if message.channel == self.client.get_channel(849989417942253568):
+            if message.content == "I have read the rules":
+                await self.assign_role(message.author, self.client.get_role(1201619683204399134))
+                await message.channel.send("SAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 
+    @commands.command()
+    async def assign_role(member: discord.Member, role: discord.Role):
+        await member.add_roles(role)
 
 
 def setup(client):

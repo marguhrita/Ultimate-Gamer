@@ -27,4 +27,5 @@ with open("token.txt", "r") as f:
 
   intents = discord.Intents.all()
   client = MyClient(command_prefix='#', intents = intents, activity=discord.Game("Gaming Ultimately (cutely)"))
+  print("running")
   client.run(token)
