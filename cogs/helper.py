@@ -13,14 +13,30 @@ class Helper(commands.Cog):
         if message.author == self.client.user:
             return
         
-        if message.channel == self.client.get_channel(849989417942253568):
+        if message.channel == self.client.get_channel(1201558800000368694):
             if message.content == "I have read the rules":
-                await self.assign_role(message.author, self.client.get_role(1201619683204399134))
-                await message.channel.send("SAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+                role = await self.get_role(message.guild, 1201619683204399134)
+                await self.assign_role(message.author, role)
+                
+
 
     @commands.command()
-    async def assign_role(member: discord.Member, role: discord.Role):
+    async def assign_role(self, member: discord.Member, role: discord.Role):
         await member.add_roles(role)
+
+
+    @commands.command()
+    async def get_role(self, guild: discord.Guild, roleId: int) -> discord.Role:
+
+        for role in guild.roles:
+            if role.id == roleId:
+                return role
+            
+        print("no role found :(")
+        return None
+  
+
+
 
 
 def setup(client):
